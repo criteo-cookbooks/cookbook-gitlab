@@ -286,7 +286,7 @@ template "/etc/nginx/sites-available/gitlab" do
   source "nginx.gitlab.erb"
   notifies :restart, "service[nginx]"
   variables(
-      :server_name => node['gitlab']['nginx_server_names'].join(' '),
+      :server_name => node['gitlab']['web_fqdn'] || node['gitlab']['nginx_server_names'].join(' '),
       :hostname => node['hostname'],
       :gitlab_app_home => node['gitlab']['app_home'],
       :https_boolean => node['gitlab']['https'],
