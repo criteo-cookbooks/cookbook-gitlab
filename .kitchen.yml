@@ -1,9 +1,9 @@
 ---
-driver_plugin: vagrant 
+driver_plugin: vagrant
 driver_config:
   require_chef_omnibus: latest
   customize:
-    memory: 1024 
+    memory: 1024
 
 platforms:
 - name: ubuntu-13.04
@@ -28,23 +28,14 @@ platforms:
   driver_config:
     network:
     - ["forwarded_port", {guest: 80, host: 8083, guest: 443, host: 8446}]
-  run_list:
-  - recipe[yum::epel]
 
 suites:
 - name: default
-  run_list: ["recipe[mysql::server]", "recipe[gitlab]"]
+  run_list: ["recipe[gitlab]"]
   attributes:
-    mysql:
-      server_debian_password: test
-      server_backup_password: test
-      server_root_password: test
-      server_repl_password: test
-    authorization:
-      sudo:
-        groups:
-        - sudo
-        - wheel
+    gitlab:
+      config:
+        external_url: http://localhost
 - name: https
   data_bag_path: "test/integration/default/data_bags"
   encrypted_data_bag_secret_key_path: "test/integration/default/encrypted_data_bag_secret"

@@ -1,0 +1,19 @@
+<% @gitlab_config.sort.each do |key, value|
+  case value %>
+<% when String %>
+<%= key %> "<%= value %>"
+<% when Fixnum %>
+<%= key %> <%= value %>
+<% else
+    value.sort.each do |key2, value2|
+      case value2 %>
+<%    when String %>
+<%= key %>["<%= key2 %>"] = "<%= value2 %>"
+<%    when Fixnum %>
+<%= key %>["<%= key2 %>"] = <%= value2 %>
+<%    else
+        fail "Unknwon type for config #{value2}"
+      end
+    end
+  end
+end %>
