@@ -3,7 +3,6 @@
 # GITLAB
 # Maintainer: @randx
 # Authors: rovanion.luckey@gmail.com, @randx
-# App Version: 6.0
 
 ### BEGIN INIT INFO
 # Provides:          gitlab
@@ -44,7 +43,7 @@ if [ "$USER" != "$app_user" ]; then
   sudo -u "$app_user" -H -i $0 "$@"; exit;
 fi
 
-# Switch to the gitlab path, exit on failure..
+# Switch to the gitlab path, exit on failure.
 if ! cd "$app_root" ; then
  echo "Failed to cd into $app_root, exiting!";  exit 1
 fi
