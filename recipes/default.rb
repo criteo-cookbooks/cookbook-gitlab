@@ -269,8 +269,7 @@ certificate_manage node['gitlab']['certificate_databag_id'] do
   owner node['gitlab']['user']
   group node['gitlab']['user']
   nginx_cert true
-  only_if { node['gitlab']['https'] and not node['gitlab']['certificate_databag_id'].nil? }
-end
+end if node['gitlab']['https'] and not node['gitlab']['certificate_databag_id'].nil?
 
 # Create nginx directories before dropping off templates
 include_recipe "nginx::commons_dir"
