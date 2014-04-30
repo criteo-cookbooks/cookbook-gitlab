@@ -7,7 +7,7 @@ name             "gitlab"
 version          "6.1.0"
 %w[ build-essential zlib readline ncurses git openssh redisio xml
     python ruby_build sudo certificate nginx database mysql
-    postgresql yum apt ].each do |cb_depend|
+    postgresql yum-epel apt ].each do |cb_depend|
   depends cb_depend
 end
 
