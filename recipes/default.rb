@@ -7,6 +7,7 @@ end
 
 package 'gitlab' do
   source pkg_path
+  provider Chef::Provider::Package::Rpm if platform_family?('rhel')
   notifies :run, 'execute[reconfigure-gitlab]'
 end
 
